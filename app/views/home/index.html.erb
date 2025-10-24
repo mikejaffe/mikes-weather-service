@@ -1,0 +1,39 @@
+<div class="max-w-md mx-auto">
+  <%= form_tag(root_path, method: "get", class: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4") do %>
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="address">
+        Enter Address
+      </label>
+      <%= text_field_tag :address, params[:address], 
+          class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
+          placeholder: "1600 Amphitheatre Parkway, Mountain View, CA" %>
+    </div>
+
+    <div class="flex items-center justify-between">
+      <%= submit_tag "Get Weather", 
+          class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+    </div>
+  <% end %>
+
+<% if @weather && @weather[:error].nil? %>
+  <div class="mt-8">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4"><%= params[:address] %></h2>
+    <p class="text-gray-600">Temperature: <%= @weather[:temperature] %>°F</p>
+    <p class="text-gray-600">High: <%= @weather[:high] %>°F</p>
+    <p class="text-gray-600">Low: <%= @weather[:low] %>°F</p>
+    <% if @weather[:forecast].present? %>
+      <p class="text-gray-600">Weekly Forecast:</p>
+      <ul class="list-disc list-inside">
+        <% @weather[:forecast]["time"].each_with_index do |date, i| %>
+          <li><%= Date.parse(date).strftime("%A, %B %d") %>: High <%= @weather[:forecast]["temperature_2m_max"][i] %>°F - Low <%= @weather[:forecast]["temperature_2m_min"][i] %>°F</li>
+        <% end %>
+      </ul>
+    <% end %>  
+    <p class="text-gray-600">Cached: <%= @weather[:cached] ? "Yes" : "No" %></p>
+  </div>
+<% elsif @weather && @weather[:error] %>
+  <div class="mt-8">
+    <p class="text-red-500"><%= @weather[:error] %></p>
+  </div>
+<% end %>
+</div>
