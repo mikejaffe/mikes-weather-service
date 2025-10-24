@@ -21,7 +21,7 @@ A Rails 8 application that provides weather forecasts for any address using geoc
 
 1. **Clone the repository**
    ```bash
-   git clone <your-repo-url>
+   git clone https://github.com/mikejaffe/mikes-weather-service
    cd weatherapp
    ```
 
@@ -79,18 +79,10 @@ To test the production Docker build locally:
    docker rm weatherapp
    ```
 
-**Note:** The production Docker image:
-- Runs on port 80 internally (mapped to 3000 on host)
-- Uses Thruster as the HTTP server
-- Requires `RAILS_MASTER_KEY` for encrypted credentials
-- Auto-migrates the database on startup
-
 ### Using the App
 
-1. Enter any address in the search box (e.g., "1600 Amphitheatre Parkway, Mountain View, CA")
+1. Enter any address in the search box (e.g., "New York, NY")
 2. Click "Get Weather"
-3. View current temperature, daily high/low, and 7-day forecast
-4. Subsequent requests for the same zip code are cached for 30 minutes
 
 ## Running Tests
 
@@ -99,17 +91,9 @@ Run the full test suite:
 bundle exec rspec
 ```
 
-Run specific test files:
-```bash
-bundle exec rspec spec/services/weather_service_spec.rb
-bundle exec rspec spec/requests/home_spec.rb
-```
-
 ## Configuration
 
 ### Caching
-
-The app uses Rails 8's Solid Cache (database-backed caching) by default. Cache entries expire after 30 minutes and are keyed by zip code.
 
 To clear the cache:
 ```bash
