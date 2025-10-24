@@ -12,7 +12,6 @@ A Rails 8 application that provides weather forecasts for any address using geoc
 
 - Ruby 3.4.7
 - SQLite3
-- Bundler gem (`gem install bundler`)
 - **APIs**: 
   - [Open-Meteo](https://open-meteo.com/) - Free weather API (no key required)
   - [Nominatim](https://nominatim.org/) - Free geocoding service
