@@ -10,7 +10,7 @@ A Rails 8 application that provides weather forecasts for any address using geoc
 
 ## Prerequisites
 
-- Ruby 3.4.7 (use rbenv, rvm, or asdf to manage Ruby versions)
+- Ruby 3.4.7
 - SQLite3
 - Bundler gem (`gem install bundler`)
 - **APIs**: 
